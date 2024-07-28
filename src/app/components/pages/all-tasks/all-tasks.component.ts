@@ -11,7 +11,7 @@ import { HttpService } from '../../../services/http.service';
 })
 export class AllTasksComponent {
   newTask = '';
-  tasksList = [];
+  taskList: { id: string; title: string }[] = [];
   httpService = inject(HttpService);
 
   ngOnInit() {
@@ -21,11 +21,13 @@ export class AllTasksComponent {
     console.log('Adding task', this.newTask);
     this.httpService.addTask(this.newTask).subscribe(() => {
       this.newTask = '';
+      this.getAllTasks();
     });
   }
   getAllTasks() {
     this.httpService.getAllTasks().subscribe((res: any) => {
-      this.tasksList = res;
+      console.log(res);
+      this.taskList = res;
     });
   }
 }
