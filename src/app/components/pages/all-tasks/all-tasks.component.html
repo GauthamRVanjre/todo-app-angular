@@ -10,10 +10,18 @@
     class="p-2 w-full rounded outline-none"
     type="text"
     placeholder="Type Your Task"
+    [(ngModel)]="newTask"
+    (keydown.enter)="addTask()"
   />
 </div>
 
 <div class="flex flex-col mt-6">
   <h2 class="font-bold text-xl">Tasks</h2>
-  <p class="p-2 bg-white mt-4 w-full rounded outline-none">Task 1</p>
+
+  @for (task of tasksList; track task){
+
+  <p class="p-2 bg-white mt-4 w-full rounded outline-none">
+    {{ task }}
+  </p>
+  }
 </div>
